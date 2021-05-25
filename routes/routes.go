@@ -35,6 +35,7 @@ func Init(mode string) *gin.Engine {
 	// 应用jwt中间件
 	v1.Use(middlewares.JWTAuthMiddleware())
 
+	// Todo: 为什么要加上这花括号
 	{
 		// 获取列表
 		v1.GET("/community", controllers.CommunityHandler)
@@ -42,6 +43,8 @@ func Init(mode string) *gin.Engine {
 		v1.GET("/community/:id", controllers.CommunityDetailHandler)
 		// 创建一个帖子
 		v1.POST("/post", controllers.CreatePostHandler)
+		// 获取帖子详情
+		v1.GET("/post/:id", controllers.GetPostDetailHandler)
 	}
 
 	// JWTAuthMiddleware函数，对jwt进行校验(anthorization头部进行验证)

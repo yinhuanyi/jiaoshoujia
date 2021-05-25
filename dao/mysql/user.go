@@ -12,6 +12,8 @@ import (
 	"database/sql"
 	"encoding/hex"
 	"jiaoshoujia/models"
+
+	"go.uber.org/zap"
 )
 
 const secret = "ipfsmain"
@@ -70,4 +72,14 @@ func Login(user *models.User) (err error) {
 	// 如果什么错误都没有，那么return相当于return err，此时err是nil
 	return
 
+}
+
+func GetUserById(userId int64) (user *models.User, err error) {
+	user = new(models.User)
+	sqlStr := `select user_id, username from user where user_id = ?`
+	err = db.Get(user, sqlStr, userId)
+	if err != nil {
+		zap.L().Error("db.Get(user, sqlStr, userId)", zap.Error(err))
+	}
+	return
 }

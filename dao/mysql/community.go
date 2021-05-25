@@ -31,10 +31,10 @@ func GetCommunityList() (communityList []*models.Community, err error) {
 }
 
 // GetCommunityDetailById  基于ID，获取详情数据
-func GetCommunityDetailById(id int64) (communityDetail models.CommunityDetail, err error) {
-
+func GetCommunityDetailById(id int64) (communityDetail *models.CommunityDetail, err error) {
+	communityDetail = new(models.CommunityDetail)
 	sqlStr := `select community_id, community_name, introduction, create_time from community where community_id = ?`
-	err = db.Get(&communityDetail, sqlStr, id)
+	err = db.Get(communityDetail, sqlStr, id)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			zap.L().Warn("没有查询到数据", zap.Any("sql", fmt.Sprintf("select community_id, community_name, introduction, create_time from community where community_id = ?", id)))

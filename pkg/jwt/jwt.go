@@ -15,7 +15,7 @@ import (
 )
 
 // 过期时间
-const TokenExpireDuration = time.Hour * 2
+const TokenExpireDuration = time.Hour * 24
 
 // 加盐
 var mySecret = []byte("ipfs")
@@ -28,7 +28,7 @@ type MyClaims struct {
 	jwt.StandardClaims
 }
 
-// 1：GenToken 生成JWT
+// GenToken  生成JWT
 func GenToken(userId int64, username string) (string, error) {
 
 	// 创建一个我们自己的声明
@@ -47,7 +47,7 @@ func GenToken(userId int64, username string) (string, error) {
 	return token.SignedString(mySecret)
 }
 
-// 2：解析token
+// ParseToken ：解析token
 func ParseToken(tokenString string) (*MyClaims, error) {
 	// 声明一个地址
 	var mc = new(MyClaims)
