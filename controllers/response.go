@@ -24,7 +24,7 @@ import (
 type ResponseData struct {
 	Code ResCode     `json:"code"`
 	Msg  interface{} `json:"msg"`
-	Data interface{} `json:"data"`
+	Data interface{} `json:"data,omitempty"`
 }
 
 // ResponseError 返回错误信息，带简单的错误提示
