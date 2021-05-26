@@ -9,6 +9,7 @@ package controllers
 
 import (
 	"errors"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -32,5 +33,23 @@ func GetCurrentUserId(c *gin.Context) (userId int64, err error) {
 		return
 	}
 
+	return
+}
+
+// GetPagination  获取用户传递的分页数据
+func GetPagination(c *gin.Context) (page, perPage int64, err error) {
+	// 获取分页数据
+	pageStr := c.Query("page")        // 第几页
+	perPageStr := c.Query("per_page") // 返回几条数据
+
+	// 这里如果用户没有彻底分页，那么类型换行会报错，那么直接使用默认值即可
+	page, err = strconv.ParseInt(pageStr, 10, 64)
+	if err != nil {
+		page = 1
+	}
+	perPage, err = strconv.ParseInt(perPageStr, 10, 64)
+	if err != nil {
+		perPage = 10
+	}
 	return
 }

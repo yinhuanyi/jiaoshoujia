@@ -25,6 +25,7 @@ func SignUpHandler(c *gin.Context) {
 	// 1：校验参数
 	//var params models.ParamSignUp
 	params := new(models.ParamSignUp)
+
 	if err := c.ShouldBindJSON(params); err != nil {
 		zap.L().Error("注册方法，参数校验错误", zap.Error(err))
 		// 判断是不是validator.ValidationErrors, 如果不是，那么不需要翻译，直接返回即可

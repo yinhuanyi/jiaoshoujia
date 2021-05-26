@@ -33,3 +33,18 @@ func GetPostById(postId int64) (post *models.Post, err error) {
 	}
 	return
 }
+
+// GetPostList : 获取post列表数据
+func GetPostList(page, perPage int64) (postList []*models.Post, err error) {
+
+	// postList = new([]*models.Post) 这样声明切片指针是错误的
+
+	// 初始化列表，使用make函数，给一个cap为2即可
+	postList = make([]*models.Post, 0, 2) // 使用make初始化的时候，不要写成make([]*models.Post, 2)，这样会多了个nil元素
+	sqlStr := "select post_id, title, content, author_id, community_id, create_time from post limit ?,?"
+	err = db.Select(&postList, sqlStr, (page-1)*perPage, perPage)
+	if err != nil {
+		zap.L().Error("db.Select(&postList, sqlStr)", zap.Error(err))
+	}
+	return
+}

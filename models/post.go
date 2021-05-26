@@ -12,6 +12,8 @@ import "time"
 // Post 这个post结构体的字段，既需要与用户提交的参数对应，也需要与数据库中的表字段对应
 // 这里将字段类型相同的放在一起，这种方式叫做【内存对齐】
 type Post struct {
+	// 如果需要将Post结构体，进行json序列化的时候，将int64类型转换为string类型，那么直接可以在tag后面加上string即可
+	//Id          int64     `json:"id,string" db:"post_id"`
 	Id          int64     `json:"id" db:"post_id"`
 	AuthorId    int64     `json:"author_id" db:"author_id"`
 	CommunityId int64     `json:"community_id" db:"community_id" binding:"required"`

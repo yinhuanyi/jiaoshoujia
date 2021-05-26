@@ -45,6 +45,8 @@ func Init(mode string) *gin.Engine {
 		v1.POST("/post", controllers.CreatePostHandler)
 		// 获取帖子详情
 		v1.GET("/post/:id", controllers.GetPostDetailHandler)
+		// 帖子的列表
+		v1.GET("/posts", controllers.GetPostListHandler)
 	}
 
 	// JWTAuthMiddleware函数，对jwt进行校验(anthorization头部进行验证)
