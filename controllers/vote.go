@@ -34,6 +34,14 @@ func PostVoteController(c *gin.Context) {
 		return
 	}
 
-	logic.PostVote()
+	// 基于context获取用户的ID
+	userId, err := GetCurrentUserId(c)
+	if err != nil {
+		ResponseError(c, CodeNeedLogin)
+		return
+	}
+
+	// 将用户的ID和用户请求的参数传递到VoteForPost函数
+	logic.VoteForPost(userId, paramVoteData)
 	ResponseSuccess(c, nil)
 }
