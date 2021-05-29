@@ -9,6 +9,7 @@ package logic
 
 import (
 	mysqlconnect "jiaoshoujia/dao/mysql"
+	redisconnect "jiaoshoujia/dao/redis"
 	"jiaoshoujia/models"
 	"jiaoshoujia/pkg/snowflake"
 
@@ -20,6 +21,10 @@ func CreatePost(post *models.Post) (err error) {
 	post.Id = snowflake.GenID()
 	// 2：将post数据写入数据库
 	err = mysqlconnect.CreatePost(post)
+	// 3：将帖子的创建时间写入到redis中
+	err = redisconnect.CreatePostTimeAndScore(post.Id)
+	//// 4: 将帖子的初始化分数写入到Redis中
+	//err = redisconnect.CreatePostSore(post.Id)
 	return
 }
 

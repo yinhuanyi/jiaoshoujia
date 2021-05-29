@@ -19,6 +19,7 @@ import (
 
 // PostVoteController 用户投票请求
 func PostVoteController(c *gin.Context) {
+	// 返回结构体类型指针
 	paramVoteData := new(models.ParamVoteData)
 	err := c.ShouldBindJSON(paramVoteData)
 	// 下面是对错误的返回处理
@@ -42,6 +43,11 @@ func PostVoteController(c *gin.Context) {
 	}
 
 	// 将用户的ID和用户请求的参数传递到VoteForPost函数
-	logic.VoteForPost(userId, paramVoteData)
+	if err = logic.VoteForPost(userId, paramVoteData); err != nil {
+		zap.L().Error("logic.VoteForPost(userId, paramVoteData)", zap.Error(err))
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+
 	ResponseSuccess(c, nil)
 }
