@@ -45,8 +45,10 @@ func Init(mode string) *gin.Engine {
 		v1.POST("/post", controllers.CreatePostHandler)
 		// 获取帖子详情
 		v1.GET("/post/:id", controllers.GetPostDetailHandler)
-		// 帖子的列表
+		// 帖子的列表(默认使用MySQL中帖子创建时间排序)
 		v1.GET("/posts", controllers.GetPostListHandler)
+		// 帖子的列表(使用Redis中帖子创建时间或帖子分数排序)
+		v1.GET("/posts2", controllers.GetPostListHandler2)
 		// 投票
 		v1.POST("/vote", controllers.PostVoteController)
 	}

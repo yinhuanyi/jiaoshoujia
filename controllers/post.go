@@ -50,7 +50,7 @@ func CreatePostHandler(c *gin.Context) {
 
 }
 
-// GetPostDetail : 获取帖子详情
+// GetPostDetailHandler : 获取帖子详情
 func GetPostDetailHandler(c *gin.Context) {
 
 	// 1：获取帖子的ID
@@ -89,4 +89,34 @@ func GetPostListHandler(c *gin.Context) {
 
 	// 返回响应
 	ResponseSuccess(c, data)
+}
+
+// GetPostListHandler2 : 获取帖子详情列表，升级版本
+func GetPostListHandler2(c *gin.Context) {
+	// c.ShouldBind() : 根据请求数据类型content-Type自动判断
+	// c.ShouldBindJSON() : 解析json相关数据
+
+	// 1：获取请求参数
+	p := &models.ParamPostList{ // 这种方式可以设置默认参数, 之前都是申明一个结构体类型指针 p := new(models.ParamPostList)
+		Page:  1,
+		Size:  10,
+		Order: models.OrderTime,
+	}
+
+	if err := c.ShouldBindQuery(p); err != nil {
+		zap.L().Error("c.ShouldBindQuery(p)", zap.Error(err))
+		ResponseError(c, CodeInvalidParam)
+		return
+	}
+
+	// 2：去Redis查询ID列表, 根据ID去数据库查询帖子详情信息
+	data, err := logic.GetPostList2(p)
+	if err != nil {
+		zap.L().Error("logic.GetPostList2(p)", zap.Error(err))
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+
+	ResponseSuccess(c, data)
+
 }
