@@ -12,6 +12,7 @@ import (
 	"jiaoshoujia/logger"
 	"jiaoshoujia/middlewares"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -32,8 +33,8 @@ func Init(mode string) *gin.Engine {
 	v1.POST("/signup", controllers.SignUpHandler)
 	// 在用户登录的时候返回jwt token
 	v1.POST("/login", controllers.LoginHandler)
-	// 应用jwt中间件
-	v1.Use(middlewares.JWTAuthMiddleware())
+	// 应用jwt中间件, 限流中间件
+	v1.Use(middlewares.JWTAuthMiddleware(), middlewares.RateLimitMiddleware(2*time.Second, 1))
 
 	// Todo: 为什么要加上这花括号
 	{
