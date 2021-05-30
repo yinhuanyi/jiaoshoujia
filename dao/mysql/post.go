@@ -29,6 +29,7 @@ func CreatePost(post *models.Post) (err error) {
 // GetPostById 获取post详情
 func GetPostById(postId int64) (post *models.Post, err error) {
 	// 这里一定要再次获取一下post的结构体类型指针，要不然会报错：【nil pointer passed to StructScan destination】
+	// 这里的参数post是一个空指针，因此必须要重新赋值，使用new函数创建一个结构体的类型指针
 	post = new(models.Post)
 	sqlStr := "select post_id, title, content, author_id, community_id, create_time from post where post_id = ?"
 	err = db.Get(post, sqlStr, postId)
@@ -68,7 +69,7 @@ func GetPostListByIds(ids []string) (postList []*models.Post, err error) {
 	}
 	// 需要重新绑定一下
 	query = db.Rebind(query)
-	//postList = make([]*models.Post, 0, 2)  这里不用make初始化吗
+	// postList = make([]*models.Post, 0, 2)  这里不用make初始化，因为切片声明后，再取地址，不是空指针
 	err = db.Select(&postList, query, args...)
 
 	return

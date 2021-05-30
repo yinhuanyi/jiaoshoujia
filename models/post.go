@@ -51,6 +51,7 @@ type Post struct {
 */
 type ApiPostDetail struct {
 	AuthorName string `json:"author_name"`
+	VoteNum    int64  `json:"vote_num"`
 	// 下面的Post和CommunityDetail指定了json结构化的方式，作为一个单独字段体现出来
 	*Post            `json:"post"`
 	*CommunityDetail `json:"community"`

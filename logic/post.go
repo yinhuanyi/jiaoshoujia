@@ -117,8 +117,15 @@ func GetPostList2(p *models.ParamPostList) (data []*models.ApiPostDetail, err er
 
 	// 根据ids从MySQL中获取数据详情
 	postList, err := mysqlconnect.GetPostListByIds(ids)
-
-	for _, postInstance := range postList {
+	if err != nil {
+		return
+	}
+	// 提前查询redis中每一篇帖子的赞成票的个数， 这里直接按照ids的顺序，返回一个赞成票列表
+	voteData, err := redisconnect.GetPostVoteData(ids)
+	if err != nil {
+		return
+	}
+	for idx, postInstance := range postList {
 		// 基于userid获取user相关信息
 		userInstance, err := mysqlconnect.GetUserById(postInstance.AuthorId)
 		if err != nil {
@@ -136,6 +143,7 @@ func GetPostList2(p *models.ParamPostList) (data []*models.ApiPostDetail, err er
 
 		postDetail := &models.ApiPostDetail{
 			AuthorName:      userInstance.Username,
+			VoteNum:         voteData[idx], // 每个帖子的赞成票
 			Post:            postInstance,
 			CommunityDetail: communityInstance,
 		}
@@ -146,4 +154,56 @@ func GetPostList2(p *models.ParamPostList) (data []*models.ApiPostDetail, err er
 
 	return
 
+}
+
+// GetCommunityPostList2 根据communityId获取帖子详情列表
+func GetCommunityPostList2(p *models.ParamCommunityPostList) (data []*models.ApiPostDetail, err error)  {
+	// 从redis中查询到ids
+	ids, err := redisconnect.GetCommunityPostIdsInOrder(p)
+	if err != nil {
+		return
+	}
+	// 如果从redis中返回的数据是空列表
+	if len(ids) == 0 {
+		return
+	}
+
+	// 根据ids从MySQL中获取数据详情
+	postList, err := mysqlconnect.GetPostListByIds(ids)
+	if err != nil {
+		return
+	}
+	// 提前查询redis中每一篇帖子的赞成票的个数， 这里直接按照ids的顺序，返回一个赞成票列表
+	voteData, err := redisconnect.GetPostVoteData(ids)
+	if err != nil {
+		return
+	}
+	for idx, postInstance := range postList {
+		// 基于userid获取user相关信息
+		userInstance, err := mysqlconnect.GetUserById(postInstance.AuthorId)
+		if err != nil {
+			zap.L().Error("mysqlconnect.GetUserById(postInstance.AuthorId)", zap.Int64("AuthorId", postInstance.AuthorId), zap.Error(err))
+			// 这里在循环里面，不能写return，如果有错误返回，那么直接continue，进行下一轮循环
+			continue
+		}
+
+		// 基于comunityId获取community信息
+		communityInstance, err := mysqlconnect.GetCommunityDetailById(postInstance.CommunityId)
+		if err != nil {
+			zap.L().Error("mysqlconnect.GetCommunityDetailById(postInstance.CommunityId)", zap.Int64("CommunityId", postInstance.CommunityId), zap.Error(err))
+			continue
+		}
+
+		postDetail := &models.ApiPostDetail{
+			AuthorName:      userInstance.Username,
+			VoteNum:         voteData[idx], // 每个帖子的赞成票
+			Post:            postInstance,
+			CommunityDetail: communityInstance,
+		}
+
+		data = append(data, postDetail)
+
+	}
+
+	return
 }

@@ -8,6 +8,7 @@
 package controllers
 
 import (
+	"fmt"
 	"jiaoshoujia/logic"
 	"jiaoshoujia/models"
 	"strconv"
@@ -116,7 +117,20 @@ func GetPostListHandler2(c *gin.Context) {
 		ResponseError(c, CodeServerBusy)
 		return
 	}
-
 	ResponseSuccess(c, data)
 
+}
+
+// GetCommunityPostListHandler 请求中，如果可以复用结构体，那么可以像这样复用
+func GetCommunityPostListHandler(c *gin.Context) {
+
+	p := &models.ParamCommunityPostList{
+		ParamPostList: &models.ParamPostList{
+			Page:  1,
+			Size:  10,
+			Order: models.OrderTime,
+		},
+		CommunityId: 1,
+	}
+	fmt.Println(p)
 }

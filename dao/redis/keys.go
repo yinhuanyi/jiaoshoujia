@@ -12,7 +12,8 @@ const (
 	Prefix             = "ipfsmain:"   // 前缀
 	KeyPostTimeZSet    = "post:time"   // zset类型，帖子及发帖时间
 	keyPostScoreZSet   = "post:score"  // zset类型，帖子及投票的分数
-	keyPostVotedZSetPF = "post:voted:" // zset类型，记录用户及投票类型， 参数是post id
+	keyPostVotedZSetPF = "post:voted:" // zset类型，记录用户及投票类型， 参数是post id, 这个key在存储的时候会加上postId
+	KeyCommunitySetPF  = "community:"  // set类型;保存每个分区下帖子的ID
 )
 
 // 获取带前缀的key

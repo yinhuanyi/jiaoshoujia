@@ -35,8 +35,14 @@ type ParamVoteData struct {
 
 // ParamPostList :帖子列表详情请求参数
 type ParamPostList struct {
-	// form表示的是解析form类型的请求参数，也就是url参数
+	// form表示的是解析form类型的请求参数，也就是url参数, 使用c.ShouldBindQuery来解析，不是使用c.Query()获取参数
 	Page  int64  `json:"page" form:"page"`
 	Size  int64  `json:"size" form:"size"`
 	Order string `json:"order" form:"order"`
+}
+
+// ParamCommunityPostList  获取带community参数的请求参数
+type ParamCommunityPostList struct {
+	*ParamPostList
+	CommunityId int64 `json:"community_id" form:"community_id"`
 }

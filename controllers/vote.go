@@ -10,6 +10,7 @@ package controllers
 import (
 	"jiaoshoujia/logic"
 	"jiaoshoujia/models"
+	"net/http"
 
 	"github.com/go-playground/validator/v10"
 
@@ -45,8 +46,14 @@ func PostVoteController(c *gin.Context) {
 	// 将用户的ID和用户请求的参数传递到VoteForPost函数
 	if err = logic.VoteForPost(userId, paramVoteData); err != nil {
 		zap.L().Error("logic.VoteForPost(userId, paramVoteData)", zap.Error(err))
-		ResponseError(c, CodeServerBusy)
+		c.JSON(http.StatusOK, gin.H{
+			"code": 400,
+			"msg":  err.Error(),
+			"data": nil,
+		})
 		return
+		//ResponseError(c, CodeServerBusy)
+		//return
 	}
 
 	ResponseSuccess(c, nil)

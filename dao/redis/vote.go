@@ -67,7 +67,10 @@ func VoteForPost(userID, postID string, value float64) (err error) {
 
 	// 查看之前的投票记录, keyPostVotedZSetPF+postID这个key是返回userId的分数，作为某个用户是否为某个帖子投过票， 如果是1表示投过赞成票，如果是-1表示投过反对票，如果是0表示没有投过票
 	ov := client.ZScore(getRedisKey(keyPostVotedZSetPF+postID), userID).Val()
-
+	// 如何用户这一次投票的结果与之前结果一致
+	if value == ov {
+		return ErrVoteRepeated
+	}
 	// 这op是存储方向
 	var op float64
 	// 这里是计算分数的正负号
