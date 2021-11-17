@@ -103,7 +103,7 @@ func GetPostListHandler2(c *gin.Context) {
 		Size:  10,
 		Order: models.OrderTime,
 	}
-
+	// 这里的ShouldBindQuery是获取参数的
 	if err := c.ShouldBindQuery(p); err != nil {
 		zap.L().Error("c.ShouldBindQuery(p)", zap.Error(err))
 		ResponseError(c, CodeInvalidParam)

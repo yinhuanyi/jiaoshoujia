@@ -61,6 +61,7 @@ func Login(user *models.User) (err error) {
 	if err == sql.ErrNoRows { // 如果没有查到用户
 		return ErrorUserNotExist
 	}
+
 	if err != nil { // 如果是其他错误
 		return
 	}

@@ -71,7 +71,7 @@ func main() {
 		fmt.Printf("翻译器获取失败：%v", err)
 	}
 
-	// 7：启动服务 (下面是优雅重启)
+	// 7：启动服务 (下面是优雅关机)
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%d", settings.Conf.Port),
 		Handler: r,
@@ -88,7 +88,9 @@ func main() {
 	<-quit
 	zap.L().Info("Shutdown Server ...")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	// 虽然这里设置了5秒超时，但是手动调用，
 	defer cancel()
+	// srv.Shutdown(ctx)中ctx.Done()是阻塞的
 	if err := srv.Shutdown(ctx); err != nil {
 		zap.L().Fatal("Server Shutdown: ", zap.Error(err))
 	}

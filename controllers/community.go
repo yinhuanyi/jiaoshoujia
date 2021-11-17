@@ -24,7 +24,9 @@ func CommunityHandler(c *gin.Context) {
 		ResponseError(c, CodeServerBusy)
 		return
 	}
+
 	ResponseSuccess(c, data)
+
 }
 
 // CommunityDetailHandler : 社区详情

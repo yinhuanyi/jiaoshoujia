@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/bwmarrin/snowflake v0.3.0
+	github.com/cch123/goroutineid v0.0.0-20200529061702-fb14fb260dcf
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fsnotify/fsnotify v1.4.9
 	github.com/gin-gonic/gin v1.7.1

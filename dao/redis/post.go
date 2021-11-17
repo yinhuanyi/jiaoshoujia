@@ -8,10 +8,10 @@
 package redisconnect
 
 import (
-	"github.com/go-redis/redis"
 	"jiaoshoujia/models"
-)
 
+	"github.com/go-redis/redis"
+)
 
 // GetPostVoteData ：根据post的ids，查询每一篇帖子投赞成票的分数, 注意这里没有获取未投票或者
 func GetPostVoteData(ids []string) (data []int64, err error) {
@@ -61,4 +61,3 @@ func GetPostIdsInOrder(p *models.ParamPostList) ([]string, error) {
 	return client.ZRevRange(key, start, end).Result()
 
 }
-

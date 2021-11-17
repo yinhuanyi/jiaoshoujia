@@ -10,6 +10,7 @@ package redisconnect
 import (
 	"fmt"
 	"jiaoshoujia/settings"
+	"log"
 
 	"github.com/go-redis/redis"
 )
@@ -19,6 +20,7 @@ var client *redis.Client
 
 // 初始化连接
 func Init(cfg *settings.RedisConfig) (err error) {
+
 	client = redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprintf("%s:%d", cfg.Host, cfg.Port),
 		Password: cfg.Password,
@@ -28,9 +30,9 @@ func Init(cfg *settings.RedisConfig) (err error) {
 
 	_, err = client.Ping().Result()
 	if err != nil {
-		fmt.Printf("Redis连接失败: %v\n", err)
-		panic(err)
+		log.Fatalf("Redis连接失败: %v\n", err)
 	}
+
 	return nil
 }
 

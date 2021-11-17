@@ -62,7 +62,7 @@ type AppConfig struct {
 
 func Init(filePath string) (err error) {
 	// 这个filename从命令行传递进来
-	viper.SetConfigFile(filePath) // 这里就是直接指定了文件，所有用它比较靠谱
+	viper.SetConfigFile(filePath) // 这里就是直接指定了文件，所以用它比较靠谱
 	//viper.SetConfigName("config")
 	//viper.SetConfigType("yaml") // 这个只是在远程获取配置文件有用，其他情况下没有用, 如果本地有config.json和config.yaml，那么就会报错
 	//viper.AddConfigPath(".")

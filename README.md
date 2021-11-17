@@ -1,6 +1,5 @@
 ### Golang Web 开发 脚手架封装
 
-
 #### 一：业务分层设计
 
 1：业务分层：controller、logic、dao 三层
@@ -11,4 +10,4 @@
 
 4：定义了返回状态码，和通用的返回接口
 
-5：jwt模块认证# jiaoshoujia
+5：jwt模块认证

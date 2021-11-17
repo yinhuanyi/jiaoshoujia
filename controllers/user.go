@@ -20,7 +20,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 注册
+// SignUpHandler 注册
 func SignUpHandler(c *gin.Context) {
 	// 1：校验参数
 	//var params models.ParamSignUp

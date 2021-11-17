@@ -1,0 +1,87 @@
+4617:C 13 Oct 13:48:21.039 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+4617:C 13 Oct 13:48:21.040 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=4617, just started
+4617:C 13 Oct 13:48:21.040 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+4617:M 13 Oct 13:48:21.046 * Running mode=standalone, port=6379.
+4617:M 13 Oct 13:48:21.046 # Server initialized
+4617:M 13 Oct 13:48:21.046 * DB loaded from disk: 0.001 seconds
+4617:M 13 Oct 13:48:21.046 * Ready to accept connections
+4617:signal-handler (1634104118) Received SIGINT scheduling shutdown...
+4617:M 13 Oct 13:48:38.432 # User requested shutdown...
+4617:M 13 Oct 13:48:38.432 * Saving the final RDB snapshot before exiting.
+4617:M 13 Oct 13:48:38.435 * DB saved on disk
+4617:M 13 Oct 13:48:38.435 # Redis is now ready to exit, bye bye...
+4731:C 13 Oct 13:48:41.670 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+4731:C 13 Oct 13:48:41.671 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=4731, just started
+4731:C 13 Oct 13:48:41.671 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+4731:M 13 Oct 13:48:41.673 * Running mode=standalone, port=6379.
+4731:M 13 Oct 13:48:41.673 # Server initialized
+4731:M 13 Oct 13:48:41.673 * DB loaded from disk: 0.000 seconds
+4731:M 13 Oct 13:48:41.673 * Ready to accept connections
+4731:signal-handler (1634105167) Received SIGTERM scheduling shutdown...
+4731:M 13 Oct 14:06:07.420 # User requested shutdown...
+4731:M 13 Oct 14:06:07.420 * Saving the final RDB snapshot before exiting.
+4731:M 13 Oct 14:06:07.421 * DB saved on disk
+4731:M 13 Oct 14:06:07.421 # Redis is now ready to exit, bye bye...
+5932:C 13 Oct 14:33:07.146 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+5932:C 13 Oct 14:33:07.147 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=5932, just started
+5932:C 13 Oct 14:33:07.147 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+5932:M 13 Oct 14:33:07.151 * Running mode=standalone, port=6379.
+5932:M 13 Oct 14:33:07.151 # Server initialized
+5932:M 13 Oct 14:33:07.152 * DB loaded from disk: 0.001 seconds
+5932:M 13 Oct 14:33:07.152 * Ready to accept connections
+5932:signal-handler (1634119602) Received SIGTERM scheduling shutdown...
+5932:M 13 Oct 18:06:42.877 # User requested shutdown...
+5932:M 13 Oct 18:06:42.880 * Saving the final RDB snapshot before exiting.
+5932:M 13 Oct 18:06:42.884 * DB saved on disk
+5932:M 13 Oct 18:06:42.884 # Redis is now ready to exit, bye bye...
+7591:C 21 Oct 14:23:27.852 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+7591:C 21 Oct 14:23:27.853 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=7591, just started
+7591:C 21 Oct 14:23:27.853 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+7591:M 21 Oct 14:23:27.865 * Running mode=standalone, port=6379.
+7591:M 21 Oct 14:23:27.865 # Server initialized
+7591:M 21 Oct 14:23:27.866 * DB loaded from disk: 0.001 seconds
+7591:M 21 Oct 14:23:27.866 * Ready to accept connections
+7591:M 21 Oct 15:23:28.043 * 1 changes in 3600 seconds. Saving...
+7591:M 21 Oct 15:23:28.046 * Background saving started by pid 9240
+9240:C 21 Oct 15:23:28.048 * DB saved on disk
+7591:M 21 Oct 15:23:28.146 * Background saving terminated with success
+7591:M 21 Oct 16:23:29.054 * 1 changes in 3600 seconds. Saving...
+7591:M 21 Oct 16:23:29.057 * Background saving started by pid 10614
+10614:C 21 Oct 16:23:29.060 * DB saved on disk
+7591:M 21 Oct 16:23:29.158 * Background saving terminated with success
+7591:M 21 Oct 17:35:58.593 * 1 changes in 3600 seconds. Saving...
+7591:M 21 Oct 17:35:58.595 * Background saving started by pid 11821
+11821:C 21 Oct 17:35:58.598 * DB saved on disk
+7591:M 21 Oct 17:35:58.699 * Background saving terminated with success
+7591:M 21 Oct 18:00:34.181 * 100 changes in 300 seconds. Saving...
+7591:M 21 Oct 18:00:34.182 * Background saving started by pid 12882
+12882:C 21 Oct 18:00:34.184 * DB saved on disk
+7591:M 21 Oct 18:00:34.282 * Background saving terminated with success
+7591:signal-handler (1634810770) Received SIGTERM scheduling shutdown...
+7591:M 21 Oct 18:06:11.009 # User requested shutdown...
+7591:M 21 Oct 18:06:11.011 * Saving the final RDB snapshot before exiting.
+7591:M 21 Oct 18:06:11.013 * DB saved on disk
+7591:M 21 Oct 18:06:11.013 # Redis is now ready to exit, bye bye...
+9496:C 26 Oct 16:55:35.357 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+9496:C 26 Oct 16:55:35.358 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=9496, just started
+9496:C 26 Oct 16:55:35.358 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+9496:M 26 Oct 16:55:35.360 * Running mode=standalone, port=6379.
+9496:M 26 Oct 16:55:35.360 # Server initialized
+9496:M 26 Oct 16:55:35.361 * DB loaded from disk: 0.001 seconds
+9496:M 26 Oct 16:55:35.361 * Ready to accept connections
+9496:M 26 Oct 16:55:46.996 # User requested shutdown...
+9496:M 26 Oct 16:55:46.996 * Saving the final RDB snapshot before exiting.
+9496:M 26 Oct 16:55:46.999 * DB saved on disk
+9496:M 26 Oct 16:55:46.999 # Redis is now ready to exit, bye bye...
+9729:C 26 Oct 16:56:01.284 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+9729:C 26 Oct 16:56:01.284 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=9729, just started
+9729:C 26 Oct 16:56:01.284 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+9729:M 26 Oct 16:56:01.286 * Running mode=standalone, port=6379.
+9729:M 26 Oct 16:56:01.287 # Server initialized
+9729:M 26 Oct 16:56:01.287 * DB loaded from disk: 0.000 seconds
+9729:M 26 Oct 16:56:01.287 * Ready to accept connections
+9729:signal-handler (1635242651) Received SIGTERM scheduling shutdown...
+9729:M 26 Oct 18:04:11.584 # User requested shutdown...
+9729:M 26 Oct 18:04:11.584 * Saving the final RDB snapshot before exiting.
+9729:M 26 Oct 18:04:11.586 * DB saved on disk
+9729:M 26 Oct 18:04:11.586 # Redis is now ready to exit, bye bye...

@@ -15,7 +15,7 @@ import (
 
 var node *sf.Node
 
-// 算法参数初始化
+// Init 算法参数初始化
 func Init(startTime string, machineID int64) (err error) {
 	var st time.Time
 	st, err = time.Parse("2006-01-02", startTime)
@@ -27,7 +27,7 @@ func Init(startTime string, machineID int64) (err error) {
 	return
 }
 
-// 生成ID
+// GenID 生成ID
 func GenID() int64 {
 	return node.Generate().Int64()
 }
